@@ -75,6 +75,7 @@ export const useTasks = () => {
 
   return {
     tasks,
+    allTasks: tasks,
     todayTasks,
     addTask,
     toggleTask,
