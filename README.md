@@ -1,4 +1,4 @@
-# Welcome to your Lovable project
+# Projeto para teste da Plataforma Lovable
 
 ## Project info
 
