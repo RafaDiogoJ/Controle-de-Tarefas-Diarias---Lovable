@@ -1,13 +1,13 @@
 import { useTasks } from '@/hooks/useTasks';
 import { ProgressRing } from '@/components/ProgressRing';
-import { TaskList } from '@/components/TaskList';
+import { TaskManager } from '@/components/TaskManager';
 import { AddTaskForm } from '@/components/AddTaskForm';
 import { getProgressPercentage, formatDate } from '@/lib/taskUtils';
 import { motion } from 'framer-motion';
 import { CalendarDays } from 'lucide-react';
 
 const Index = () => {
-  const { todayTasks, addTask, toggleTask, deleteTask, isLoaded } = useTasks();
+  const { allTasks, todayTasks, addTask, toggleTask, deleteTask, isLoaded } = useTasks();
   const progress = getProgressPercentage(todayTasks);
 
   if (!isLoaded) {
@@ -75,7 +75,7 @@ const Index = () => {
           </div>
         </motion.div>
 
-        {/* Task List */}
+        {/* Task Manager with Tabs */}
         <motion.section 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -84,7 +84,7 @@ const Index = () => {
         >
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-lg font-semibold text-foreground">
-              Tarefas de hoje
+              Gerenciar Tarefas
             </h2>
             {todayTasks.length > 0 && (
               <span className="text-sm text-muted-foreground">
@@ -92,8 +92,9 @@ const Index = () => {
               </span>
             )}
           </div>
-          <TaskList 
-            tasks={todayTasks} 
+          <TaskManager 
+            allTasks={allTasks}
+            todayTasks={todayTasks} 
             onToggle={toggleTask} 
             onDelete={deleteTask} 
           />
